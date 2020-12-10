@@ -100,7 +100,8 @@ VideoCodec VideoCodecInitializer::VideoEncoderConfigToVideoCodec(
     RTC_DCHECK_GE(streams[i].target_bitrate_bps, streams[i].min_bitrate_bps);
     RTC_DCHECK_GE(streams[i].max_bitrate_bps, streams[i].target_bitrate_bps);
     RTC_DCHECK_GE(streams[i].max_qp, 0);
-
+	RTC_LOG(LS_INFO) << "ppt, in VideoCodecInitializer::VideoEncoderConfigToVideoCodec, streams[" 
+		<< i << "].width: " << streams[i].width <<"," << streams[i].height;
     sim_stream->width = static_cast<uint16_t>(streams[i].width);
     sim_stream->height = static_cast<uint16_t>(streams[i].height);
     sim_stream->maxFramerate = streams[i].max_framerate;

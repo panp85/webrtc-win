@@ -100,6 +100,8 @@ static void RtpFragmentize(EncodedImage* encoded_image,
   // Calculate minimum buffer size required to hold encoded data.
   size_t required_capacity = 0;
   size_t fragments_count = 0;
+  RTC_LOG(LS_WARNING)
+          << "ppt, in RtpFragmentize, info->iLayerNum: " << info->iLayerNum;
   for (int layer = 0; layer < info->iLayerNum; ++layer) {
     const SLayerBSInfo& layerInfo = info->sLayerInfo[layer];
     for (int nal = 0; nal < layerInfo.iNalCount; ++nal, ++fragments_count) {

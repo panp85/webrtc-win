@@ -1864,15 +1864,18 @@ void AudioProcessingImpl::InitializeEchoController() {
       (config_.echo_canceller.enabled && !config_.echo_canceller.mobile_mode &&
        !config_.echo_canceller.use_legacy_aec)) {
     if (echo_control_factory_) {
+	  RTC_LOG(LS_INFO) << "ppt, in AudioProcessingImpl::InitializeEchoController, echo_control_factory_ yes";
       private_submodules_->echo_controller =
           echo_control_factory_->Create(proc_sample_rate_hz());
     } else {
+	  RTC_LOG(LS_INFO) << "ppt, in AudioProcessingImpl::InitializeEchoController, EchoCanceller3";
       private_submodules_->echo_controller = absl::make_unique<EchoCanceller3>(
           EchoCanceller3Config(), proc_sample_rate_hz(), true);
     }
 
     capture_nonlocked_.echo_controller_enabled = true;
   } else {
+  	RTC_LOG(LS_INFO) << "ppt, in AudioProcessingImpl::InitializeEchoController, echo_controller false";
     private_submodules_->echo_cancellation->Enable(
         config_.echo_canceller.enabled && !config_.echo_canceller.mobile_mode);
     private_submodules_->echo_control_mobile->Enable(

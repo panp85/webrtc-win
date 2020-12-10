@@ -2474,6 +2474,7 @@ void PeerConnection::SetRemoteDescription(
     rtc::scoped_refptr<SetRemoteDescriptionObserverInterface> observer) {
   RTC_DCHECK_RUN_ON(signaling_thread());
   TRACE_EVENT0("webrtc", "PeerConnection::SetRemoteDescription");
+  RTC_LOG(LS_INFO) << "ppt, PeerConnection::SetRemoteDescription";
 
   if (!observer) {
     RTC_LOG(LS_ERROR) << "SetRemoteDescription - observer is NULL.";
@@ -4307,6 +4308,8 @@ void PeerConnection::GetOptionsForPlanBOffer(
 
   // Add audio/video/data m= sections to the end if needed.
   if (!audio_index && offer_new_audio_description) {
+  	RTC_LOG(LS_WARNING) 
+		<< "ppt, in PeerConnection::GetOptionsForPlanBOffer, audio, go to session_options->media_description_options.push_back.";
     session_options->media_description_options.push_back(
         cricket::MediaDescriptionOptions(
             cricket::MEDIA_TYPE_AUDIO, cricket::CN_AUDIO,
@@ -4315,6 +4318,8 @@ void PeerConnection::GetOptionsForPlanBOffer(
     audio_index = session_options->media_description_options.size() - 1;
   }
   if (!video_index && offer_new_video_description) {
+  	RTC_LOG(LS_WARNING) 
+		<< "ppt, in PeerConnection::GetOptionsForPlanBOffer, video, go to session_options->media_description_options.push_back.";
     session_options->media_description_options.push_back(
         cricket::MediaDescriptionOptions(
             cricket::MEDIA_TYPE_VIDEO, cricket::CN_VIDEO,
@@ -4453,6 +4458,8 @@ void PeerConnection::GetOptionsForUnifiedPlanOffer(
       RTC_CHECK(transceiver);
       // A media section is considered eligible for recycling if it is marked as
       // rejected in either the current local or current remote description.
+      RTC_LOG(LS_WARNING) 
+		<< "ppt, in PeerConnection::GetOptionsForUnifiedPlanOffer, local_contents or remote_contents, go to session_options->media_description_options.push_back.";
       if (had_been_rejected && transceiver->stopped()) {
         session_options->media_description_options.push_back(
             cricket::MediaDescriptionOptions(transceiver->media_type(), mid,
@@ -4491,6 +4498,8 @@ void PeerConnection::GetOptionsForUnifiedPlanOffer(
       continue;
     }
     size_t mline_index;
+	RTC_LOG(LS_WARNING) 
+		<< "ppt, in PeerConnection::GetOptionsForUnifiedPlanOffer, transceivers_, go to session_options->media_description_options.push_back.";
     if (!recycleable_mline_indices.empty()) {
       mline_index = recycleable_mline_indices.front();
       recycleable_mline_indices.pop();
@@ -4637,8 +4646,11 @@ void PeerConnection::GenerateMediaDescriptionOptions(
     absl::optional<size_t>* video_index,
     absl::optional<size_t>* data_index,
     cricket::MediaSessionOptions* session_options) {
+    
   for (const cricket::ContentInfo& content :
        session_desc->description()->contents()) {
+	RTC_LOG(LS_WARNING) 
+		<< "ppt, in PeerConnection::GenerateMediaDescriptionOptions, go to session_options->media_description_options.push_back.";
     if (IsAudioContent(&content)) {
       // If we already have an audio m= section, reject this extra one.
       if (*audio_index) {
