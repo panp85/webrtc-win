@@ -266,7 +266,7 @@ void WebRtcVoiceEngine::Init() {
   // Set default engine options.
   {
     AudioOptions options;
-    options.echo_cancellation = true;
+    options.echo_cancellation = false;
     options.auto_gain_control = true;
     options.noise_suppression = true;
     options.highpass_filter = true;
