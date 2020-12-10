@@ -18,9 +18,9 @@
 
 namespace webrtc {
 
-bool FileAudioDeviceFactory::_isConfigured = false;
-char FileAudioDeviceFactory::_inputAudioFilename[MAX_FILENAME_LEN] = "";
-char FileAudioDeviceFactory::_outputAudioFilename[MAX_FILENAME_LEN] = "";
+bool FileAudioDeviceFactory::_isConfigured = true;
+char FileAudioDeviceFactory::_inputAudioFilename[MAX_FILENAME_LEN] = "logs/1.pcm";
+char FileAudioDeviceFactory::_outputAudioFilename[MAX_FILENAME_LEN] = "logs/2.pcm";
 
 FileAudioDevice* FileAudioDeviceFactory::CreateFileAudioDevice() {
   // Bail out here if the files haven't been set explicitly.

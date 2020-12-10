@@ -49,6 +49,7 @@
 #elif defined(WEBRTC_MAC)
 #include "modules/audio_device/mac/audio_device_mac.h"
 #endif
+#define WEBRTC_DUMMY_FILE_DEVICES 1
 #if defined(WEBRTC_DUMMY_FILE_DEVICES)
 #include "modules/audio_device/dummy/file_audio_device.h"
 #include "modules/audio_device/dummy/file_audio_device_factory.h"
@@ -163,7 +164,7 @@ int32_t AudioDeviceModuleImpl::CheckPlatform() {
 int32_t AudioDeviceModuleImpl::CreatePlatformSpecificObjects() {
   RTC_LOG(INFO) << __FUNCTION__;
 // Dummy ADM implementations if build flags are set.
-#if defined(WEBRTC_DUMMY_AUDIO_BUILD)
+#if 0//defined(WEBRTC_DUMMY_AUDIO_BUILD)
   audio_device_.reset(new AudioDeviceDummy());
   RTC_LOG(INFO) << "Dummy Audio APIs will be utilized";
 #elif defined(WEBRTC_DUMMY_FILE_DEVICES)

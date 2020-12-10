@@ -12,6 +12,7 @@
 #define AUDIO_DEVICE_FILE_AUDIO_DEVICE_FACTORY_H_
 
 #include <stdint.h>
+#define WEBRTC_DUMMY_FILE_DEVICES 1
 
 namespace webrtc {
 
