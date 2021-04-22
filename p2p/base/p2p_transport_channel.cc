@@ -2500,8 +2500,8 @@ void P2PTransportChannel::SetWritable(bool writable) {
   if (writable_ == writable) {
     return;
   }
-  RTC_LOG(LS_VERBOSE) << ToString()
-                      << ": Changed writable_ to " << writable;
+  RTC_LOG(LS_INFO) << ToString()
+                      << "ppt, in P2PTransportChannel::SetWritable, writable: " << writable;
   writable_ = writable;
   if (writable_) {
     has_been_writable_ = true;
@@ -2511,6 +2511,8 @@ void P2PTransportChannel::SetWritable(bool writable) {
 }
 
 void P2PTransportChannel::SetReceiving(bool receiving) {
+  RTC_LOG(LS_INFO) << ToString()
+                      << "ppt, in P2PTransportChannel::SetReceiving, receiving: " << receiving;
   if (receiving_ == receiving) {
     return;
   }
