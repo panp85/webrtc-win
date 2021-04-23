@@ -1911,6 +1911,7 @@ void P2PTransportChannel::UpdateState() {
       ComputeIceTransportState();
 
   if (state_ != state) {
+  	
     RTC_LOG(LS_INFO) << ToString()
                      << ": Transport channel state changed from "
                      << static_cast<int>(state_) << " to "
